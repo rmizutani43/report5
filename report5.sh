@@ -1,13 +1,15 @@
 #!/bin/bash
 
-echo "2つの数値(半角)をスペースを空けて入力してください。結果として最大公約数を出力します。"
-echo -n INPUT_VALUE:
-read str1 str2
+a=$1
+b=$2
 
-a=$str1
-b=$str2
-buf1=$str1
-buf2=$str2
+if [ $# -ne 2 ]; then
+    echo "ERROR: PLZ INPUT 2 ARGMENTS"
+    exit 1
+fi
+
+buf1=$1
+buf2=$2
 
 while [ 0 -lt $b ]
   do
