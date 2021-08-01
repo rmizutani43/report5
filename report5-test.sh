@@ -3,9 +3,10 @@
 #test1:input_check
 #test3:input_not_charactor
 
-#test1
-./report5.sh echo "err1" /tmp/$$-ans /tmp/$$-result || exit 1
+#error
+echo "ERROR: PLZ INPUT 2 ARGMENTS" > /tmp/$$-ans
+./report5.sh $# -lt 0  > /tmp/$$-result && exit 1
+diff /tmp/$$-ans /tmp/$$-result || exit 1
 
-#SUCCESS
+#delete
 rm /tmp/$$-*
-echo "report5.sh success"
