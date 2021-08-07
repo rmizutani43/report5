@@ -1,28 +1,47 @@
 #!/bin/bash
 
-a=$1
-b=$2
+function max() {
+	if [[ $1 > $2 ]] ; then
+	        return $1
+	else
+	        return $2
+	fi
+}
+							 
+function min() {
+	if [[ $1 < $2 ]] ; then
+                return $1
+        else
+                return $2
+															        fi
+}													
 
-buf1=$1
-buf2=$2
-
-while [[ 0 -lt ${b} ]]
-  do
-    r=$(( $a % $b ))
-    a=$b
-    b=$r
-  done
-
-if [ ${buf1} -eq 0 ]; then
+if [[ $1 = 0 ]] ; then
+    echo "you can't 0"
     exit 1
-elif [ ${buf2} -eq 0 ]; then
+elif [[ $2 = 0 ]] ; then
+    echo "you can't 0"
     exit 1
-elif [ ${a} -eq ${buf2} ]; then
-    fb=$buf2
-    echo "gcd = $fb"
-    exit 0
 else
-    fa=$a
-    echo "gcd = $fa"
-    exit 0
+    :
+fi
+
+function gcd() {
+        max $1 $2
+        local a=$?
+        min $1 $2
+        local b=$?
+        local t
+        while [[ $b > 0 ]] ; do
+               let t=a
+               let a=b
+               let b=t%b
+        done
+        return $a
+}
+															if [[ "$1" =~ ^([0-9])+$ ]] && [[ "$2" =~ ^([0-9])+$ ]] ; then
+        gcd $1 $2
+        echo $?
+else
+        echo GCD Usage $0 integer1 integer2
 fi
